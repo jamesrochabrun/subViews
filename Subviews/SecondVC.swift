@@ -80,12 +80,12 @@ extension UIView {
     func oneLevelUp() -> [Int] {
         var view = self
         var indexes = [Int]()
-        
         while view.superview != nil {
-            let oneLevelUp = view.superview
-            let index = oneLevelUp?.subviews.index(of: view)
-            indexes.append(index!)
-            view = oneLevelUp!
+            if let oneLevelUp = view.superview,
+            let index = oneLevelUp.subviews.index(of: view) {
+                indexes.append(index)
+                view = oneLevelUp
+            }
         }
         return indexes
     }
